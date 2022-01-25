@@ -7,7 +7,7 @@ function value(){
   # but dont recognize alpha keys quoted this way
   [[ ${args::1} =~ ^[0-9]$ ]] && args=$( printf '"%s"' $args );
 
-  local output=$($DESICCANT_JQ ."$args" $configuration_file);
+  local output=$($HITCH_JQ ."$args" $configuration_file);
   echo $output | tr -d '[],"';
 }
 
@@ -24,24 +24,24 @@ function keys(){
     local args=".$1 |";
     [[ ${args::1} =~ ^[0-9]$ ]] && args=$( printf '"%s"' $args );
   fi
-  $DESICCANT_JQ "${args} keys_unsorted" $configuration_file | tr -d '[],"';
+  $HITCH_JQ "${args} keys_unsorted" $configuration_file | tr -d '[],"';
 }
 
 function update(){
   local field="${1}" value="${2}" json="${3}";
-  echo "$( $DESICCANT_JQ --arg value "$value" ."$field"' = $value' $json )" > $json;
+  echo "$( $HITCH_JQ --arg value "$value" ."$field"' = $value' $json )" > $json;
 }
 
 # return the absolute path of any given relative
-# to Desiccant root path ${1} or leave any
+# to HITCH root path ${1} or leave any
 # given absolute path ${1} unchanged
 function path(){
   if [[ -z ${1+x} ]]
   then
-    echo "$DESICCANT_PWD";
+    echo "$HITCH_PWD";
   else
     local path="${1}";
-    [[ $path =~ ^/|^~/ ]] && echo "$path" || echo "$DESICCANT_PWD/$path";
+    [[ $path =~ ^/|^~/ ]] && echo "$path" || echo "$HITCH_PWD/$path";
   fi
 }
 
@@ -51,7 +51,7 @@ function path(){
 function app(){
   local args="${1}";
 
-  local configs="$DESICCANT_PWD/configs";
+  local configs="$HITCH_PWD/configs";
   local value="null";
 
   local user_config=$( path "$configs/app.json" );
