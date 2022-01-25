@@ -1,0 +1,7 @@
+/*.env
+/vendor
+/node_modules
+/resources/videos
+/public/videos
+/public/logos
+composer.lock
