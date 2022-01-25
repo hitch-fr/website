@@ -1,0 +1,3 @@
+[submodule "resources/sass/uikit"]
+	path = resources/sass/uikit
+	url = https://github.com/uikit/uikit.git
