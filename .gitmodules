@@ -1,3 +1,6 @@
 [submodule "resources/sass/uikit"]
 	path = resources/sass/uikit
 	url = https://github.com/uikit/uikit.git
+[submodule "scripts/bin/bash-tpl"]
+	path = scripts/bin/bash-tpl
+	url = https://github.com/TekWizely/bash-tpl.git
